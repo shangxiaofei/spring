@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:mcache="http://www.springframework.org/schema/mcache"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+http://www.springframework.org/schema/task
+http://www.springframework.org/schema/task/spring-task.xsd
+http://www.springframework.org/schema/mcache
+http://www.springframework.org/schema/meituan-cache-1.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+	<!-- 启动注解，注册服务，如验证框架、全局类型转换器 -->
+	<!-- <mvc:annotation-driven />  -->
+	<!-- 启动自动扫描 -->
+
+	<context:component-scan base-package="com.spring.test">
+		<!-- 制定扫包规则 ,只扫描使用@Controller注解的JAVA类-->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation" expression="org.springframework.beans.factory.annotation.Autowired" />
+	</context:component-scan>
+
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+
+	<!--线程池的配置-->
+	<task:executor id="executor" pool-size="10" keep-alive="600" queue-capacity="2000" rejection-policy="CALLER_RUNS" />
+	<!--开启异步注解-->
+	<task:annotation-driven executor="executor"/>
+	<!--开启本地一级缓存-->
+	<!--<mcache:annotation-driven firstLeveCacheSwitch="true" secondLeveCacheSwitch="false" oneLeveCacheDataSafe="false"/>-->
+
+	<!--quartz的配置-->
+
+</beans>

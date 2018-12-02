@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+	<!--packages 是规则文件在项目中位置的包名，可以是多个，用,号隔开-->
+	<!--Kmodule中可以包含一个到多个kbase，分别对应drl的规则文件。
+		Kbase需要一个唯一的name，可以取任意字符串。
+		packages为drl文件所在resource目录下的路径。注意区分drl文件中的package与此处的package不一定相同。多个包用逗号分隔。默认情况下会扫描resources目录下所有（包含子目录）规则文件。
+		kbase的default属性，标示当前KieBase是不是默认的，如果是默认的则不用名称就可以查找到该KieBase，但每个module最多只能有一个默认KieBase。
+		kbase下面可以有一个或多个ksession，ksession的name属性必须设置，且必须唯一。
+	-->
+	<kbase name="catColor" packages="drool.dr7discount">
+		<ksession name="ksession-rule"/>
+	</kbase>
+</kmodule>

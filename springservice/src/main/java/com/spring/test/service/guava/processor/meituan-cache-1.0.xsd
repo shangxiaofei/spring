@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:tool="http://www.springframework.org/schema/tool"
+			targetNamespace="http://www.springframework.org/schema/mcache"
+			elementFormDefault="qualified"
+			attributeFormDefault="unqualified">
+
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[
+		 support for Mcache
+		]]></xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:import namespace="http://www.springframework.org/schema/beans" schemaLocation="http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"/>
+	<xsd:import namespace="http://www.springframework.org/schema/tool" schemaLocation="http://www.springframework.org/schema/tool/spring-tool-4.1.xsd"/>
+
+	<xsd:element name="annotation-driven">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+				@Mcache scaning
+			]]></xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attribute name="firstLeveCacheSwitch" type="xsd:boolean" use="required">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[
+						firstLeveCacheSwitch guava cache
+					]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="secondLeveCacheSwitch" type="xsd:boolean" use="required">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[
+						secondLeveCacheSwitch redis
+					]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="oneLeveCacheDataSafe" type="xsd:boolean" use="optional" default="false">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[
+	 					cache data Global security flag
+					]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="secondLevelCacheRef" type="xsd:string" use="optional">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[
+						secondLevelCache reference
+					]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

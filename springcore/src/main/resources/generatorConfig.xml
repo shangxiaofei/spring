@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="mysqlgenerator" targetRuntime="MyBatis3">
+        <!--数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root"
+                        password="shangxiaofei" />
+
+        <!--生成javaEntry实体-->
+        <javaModelGenerator targetPackage="com.spring.test.entry.generator" targetProject="src/main/java" />
+
+        <!--生成mapper.xml-->
+        <sqlMapGenerator targetPackage="mapper/custom" targetProject="src/main/resources" />
+
+        <!--生成的mapper的接口文件-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.spring.test.mapper.generator" targetProject="src/main/java" />
+
+        <!--待生成的表名-->
+        <table tableName="tx_order" domainObjectName="TxOrder">
+            <columnOverride column="id" property="id" javaType="java.lang.Integer"  typeHandler=""/>
+            <columnOverride column="name" property="name" javaType="java.lang.String"/>
+            <columnOverride column="money" property="money" javaType="java.lang.Integer"/>
+        </table>
+
+    </context>
+
+</generatorConfiguration>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<router-rule>
+    <table-shard-rule table="tx_order" generatedPK="name">
+        <shard-dimension dbRule="#name#.substring(#name#.indexOf('_') + 1, #name#.lastIndexOf('_')).toLong()%2" dbIndexes="id[0-1]" tbRule="#name#.substring(#name#.indexOf('_') + 1, #name#.lastIndexOf('_')).toLong()%4" tbSuffix="alldb:[0,7]" isMaster="true">
+        </shard-dimension>
+    </table-shard-rule>
+</router-rule>

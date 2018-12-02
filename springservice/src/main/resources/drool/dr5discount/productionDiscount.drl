@@ -1,0 +1,21 @@
+package com.spring.service.drools.dr5discount.protest
+ 
+import com.spring.test.service.drools.dr5discount.Product;
+
+
+//如果产品是钻石，则折扣为15
+rule "Offer4Diamond"
+
+    when
+        pro : Product( type == Product.DIAMOND )
+    then
+        pro.setDiscount(15);
+end
+
+//如果产品是黄金，则折扣为25
+rule "Offer4Gold"
+    when
+        pro:Product(type == Product.GOLD)
+    then
+        pro.setDiscount(25);
+end

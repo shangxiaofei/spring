@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!--加载数据库配置-->
+	<context:property-placeholder location="classpath:DataSource.properties"/>
+
+	<!-- 开启自动扫包 -->
+	<context:component-scan base-package="com.spring.test.**"></context:component-scan>
+
+	<!--开启注解事务-->
+	<tx:annotation-driven/>
+
+	<!-- 启动AOP支持 -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method = "close">
+		<!-- 数据库基本信息配置 -->
+		<property name = "url" value = "${jdbc.url}" />
+		<property name = "username" value = "${jdbc.username}" />
+		<property name = "password" value = "${jdbc.password}" />
+		<property name = "driverClassName" value = "${jdbc.driver}"/>
+		<!-- 最大并发连接数 -->
+		<property name = "maxActive" value = "${maxActive}" />
+		<!-- 初始化连接数量 -->
+		<property name = "initialSize" value = "${initialSize}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name = "maxWait" value = "${maxWait}" />
+		<!-- 最小空闲连接数 -->
+		<property name = "minIdle" value = "${minIdle}" />
+	</bean>
+
+	<bean id="shardDs" class="com.dianping.zebra.shard.jdbc.ShardDataSource" init-method="init">
+		<property name="dataSourcePool">
+            <map>
+                <entry key="id0" value-ref="zebraDs0"/>
+                <entry key="id1" value-ref="zebraDs1"/>
+            </map>
+        </property>
+        <property name="routerFactory" ref="xmlResourceRouterBuilder"/>
+        <property name="parallelCorePoolSize" value="32"/>
+        <property name="parallelMaxPoolSize" value="64"/>
+        <property name="parallelWorkQueueSize" value="64"/>
+        <property name="parallelExecuteTimeOut" value="1000"/>
+        <property name="poolType" value="druid"/>
+        <property name="minPoolSize" value="5" />
+	</bean>
+    <bean id="zebraDs0" class="com.dianping.zebra.single.jdbc.SingleDataSource" init-method="init" destroy-method="close">
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="driverClass" value="${jdbc.driver}"/>
+    </bean>
+    <bean id="zebraDs1" class="com.dianping.zebra.single.jdbc.SingleDataSource" init-method="init" destroy-method="close">
+        <property name="jdbcUrl" value="${jdbc.url1}"/>
+        <property name="user" value="${jdbc.username1}"/>
+        <property name="password" value="${jdbc.password1}"/>
+        <property name="driverClass" value="${jdbc.driver1}"/>
+    </bean>
+
+    <bean id="xmlResourceRouterBuilder" class="com.dianping.zebra.shard.router.builder.XmlResourceRouterBuilder">
+        <constructor-arg value="spring/shard/router-local-rule.xml"/>
+    </bean>
+
+
+	<!--spring事务管理器-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="shardDs"/>
+	</bean>
+
+	<!--spring和mybatis整合-->
+	<!-- 配置Session工厂 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="shardDs"/>
+		<!-- 加载mybatis.cfg.xml文件 -->
+		<property name="mapperLocations" value="classpath*:mapper/*/*.xml"/>
+	</bean>
+
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.spring.test.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+
+</beans>

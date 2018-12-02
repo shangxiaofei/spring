@@ -1,0 +1,34 @@
+<Configuration status="WARN">
+
+    <Appenders>
+
+        <!--打印到控制台-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!--文件输出-->
+        <File name="FileAppender" fileName="/Users/shangxiaofei/sxftestLog4j2.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
+
+        <Async name="AsyncAppender">
+            <blocking>false</blocking>
+            <bufferSize>1</bufferSize>
+            <AppenderRef ref="FileAppender"/>
+        </Async>
+
+    </Appenders>
+
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+        <Logger name="AsyncFileLogger" level="trace" additivity="true">
+            <AppenderRef ref="AsyncAppender" />
+        </Logger>
+
+    </Loggers>
+</Configuration>

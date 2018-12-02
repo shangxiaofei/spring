@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--属性配置-->
+    <properties>
+        <property name="username" value="sxf"/>
+        <property name="id" value="123"/>
+    </properties>
+
+    <!--全局配置信息-->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <!--配置别名信息-->
+    <typeAliases>
+        <typeAlias type="com.spring.test.study.entry.Blog" alias="Blog"/>
+    </typeAliases>
+
+    <!--配置数据库信息-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="shangxiaofei"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--实体类映射文件-->
+    <mappers>
+        <mapper resource="custemMapper/BlogMapper.xml"/>
+    </mappers>
+
+</configuration>

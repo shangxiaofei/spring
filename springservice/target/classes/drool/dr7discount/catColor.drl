@@ -1,0 +1,21 @@
+package com.spring.test.drools7.test.catcolor
+ 
+import com.spring.test.service.drools.dr7discount.Cat;
+
+
+//如果是A类型的猫则为黑色的猫
+rule "cat4black"
+
+    when
+        cat : Cat(type.equals(Cat.A) )
+    then
+        cat.setColor("黑色");
+end
+
+//如果是B类型的猫则未白色的猫
+rule "cat4white"
+    when
+        cat:Cat(type.equals(Cat.B))
+    then
+        cat.setColor("白色");
+end
