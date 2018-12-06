@@ -110,7 +110,7 @@
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.3" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.3" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.3" />
-          <element id="library" level="project" name="Maven: com.dianping.zebra:zebra-api:2.9.15" />
+          <element id="library" level="project" name="Maven: com.dianping.zebra:zebra-api:2.10.4" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jdbc:7.0.61" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:7.0.61" />
           <element id="library" level="project" name="Maven: com.dianping.lion:lion-client:0.7.8" />
@@ -122,17 +122,22 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.3" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.3" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.3" />
+          <element id="library" level="project" name="Maven: com.dianping.cat:cat-client:1.6.8" />
+          <element id="library" level="project" name="Maven: io.netty:netty-all:4.0.24.Final" />
           <element id="library" level="project" name="Maven: com.meituan.mtrace:mtrace-api:1.1.6" />
           <element id="library" level="project" name="Maven: com.dianping:avatar-tracker:2.2.5" />
+          <element id="library" level="project" name="Maven: com.dianping.rhino:rhino-client:1.1.4" />
           <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:2.3.9" />
+          <element id="library" level="project" name="Maven: com.meituan.service.inf:kms-java-client:0.7.0" />
+          <element id="library" level="project" name="Maven: com.sankuai.octo:mns-invoker:1.8.7" />
+          <element id="library" level="project" name="Maven: com.sankuai.octo:idl-sgagent:1.7.2" />
+          <element id="library" level="project" name="Maven: com.sankuai.octo:idl-common:1.8.1" />
           <element id="archive" name="springcore-1.0-SNAPSHOT.jar">
             <element id="module-output" name="springcore" />
           </element>
-          <element id="library" level="project" name="Maven: com.dianping.zebra:zebra-ds-monitor-client:2.10.4" />
-          <element id="library" level="project" name="Maven: com.dianping.cat:cat-client:1.6.8" />
-          <element id="library" level="project" name="Maven: io.netty:netty-all:4.0.24.Final" />
+          <element id="library" level="project" name="Maven: com.dianping.zebra:zebra-ds-monitor-client:2.10.5.2" />
           <element id="library" level="project" name="Maven: com.dianping.zebra:zebra-dao:0.3.0" />
-          <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.17" />
+          <element id="library" level="project" name="Maven: com.alibaba:druid:1.1.12" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.0" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.3.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.1.6.RELEASE" />

@@ -10,7 +10,7 @@ import java.util.Calendar;
  */
 public class LockDate {
     public static void main(String[] args) {
-        test01();
+        test03();
     }
 
     public static void test01(){
@@ -26,5 +26,13 @@ public class LockDate {
         Calendar calendar=Calendar.getInstance();
         int hour=calendar.get(Calendar.HOUR_OF_DAY);
         System.out.println("当前的小时==>"+hour);
+    }
+
+    public static void test03(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, 2018);
+        calendar.set(Calendar.MONTH, 11 - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 11);
+        System.out.println(DateFormatUtils.format(calendar.getTime(),"yyyMMdd"));
     }
 }

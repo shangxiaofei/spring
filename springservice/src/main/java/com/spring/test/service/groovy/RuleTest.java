@@ -3,6 +3,9 @@ package com.spring.test.service.groovy;
 import com.dianping.zebra.shard.router.rule.engine.GroovyRuleEngine;
 import com.dianping.zebra.shard.router.rule.engine.RuleEngine;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +18,7 @@ public class RuleTest {
 
     public static void main(String[] args) {
         //test01();
-        test03();
+        test02();
     }
 
 
@@ -41,7 +44,18 @@ public class RuleTest {
 
 
     public static void test02(){
-        Date date=new Date();
-        System.out.println("时间=>"+date.getTime());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, 2017);
+        calendar.set(Calendar.MONTH, 9 - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, 11);
+        System.out.println("时间=>"+ DateFormatUtils.format(calendar.getTime(),"yyyyMM"));
+    }
+
+
+    public static void test04(){
+        RuleEngine dbRule = new GroovyRuleEngine("shardByMonth(#created_time#,'yyyyMM','201708','201812',1,1,6,0,0,true)");
+        Map<String, Object> valMap = new HashMap<String, Object>();
+        valMap.put("created_time", new Date());
+        System.out.println("dbIndex = "+dbRule.eval(valMap));
     }
 }

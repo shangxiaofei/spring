@@ -1,5 +1,7 @@
 package com.spring.test.utils;
 
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -21,6 +23,7 @@ public class HashMapUtils {
      * @return
      */
     static final int tableSizeFor(int cap) {
+
         int n = cap - 1;
         n |= n >>> 1;
         n |= n >>> 2;

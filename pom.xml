@@ -16,7 +16,7 @@
 
     <!--属性管理-->
     <properties>
-        <druid.version>1.0.17</druid.version>
+        <druid.version>1.1.12</druid.version>
         <spring.version>4.1.6.RELEASE</spring.version>
         <mybatis.version>3.4.0</mybatis.version>
         <fastjson.version>1.2.8.sec01</fastjson.version>
