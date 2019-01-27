@@ -1,5 +1,6 @@
 package com.spring.sxf.test;
 
+import com.spring.test.conditions.Uconditions;
 import com.spring.test.entry.User;
 import com.spring.test.entry.generator.SUser;
 import com.spring.test.service.UserService;
@@ -8,6 +9,7 @@ import com.spring.test.service.impl.UserManage;
 import com.spring.test.service.quratz.HelloWorldJob;
 
 
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.quartz.JobBuilder;
@@ -21,6 +23,7 @@ import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import sun.misc.BASE64Encoder;
@@ -46,12 +49,23 @@ import java.util.zip.GZIPOutputStream;
 public class TestTranscation {
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserManage userManage;
+//
+//    @Autowired
+//    private UserManage userManage;
 
     @Autowired
     private UserListen userListen;
+
+
+    @Test
+    public void testSameService(){
+        User user=new User();
+        user.setName("同service调用");
+        user.setAge(10);
+        user.setAddress("二级缓存");
+        userService.updateUser(user);
+
+    }
 
     @Test
     public  void  test(){
@@ -63,37 +77,46 @@ public class TestTranscation {
     }
 
     @Test
+    public void testQuery(){
+        Uconditions uconditions=new Uconditions();
+        uconditions.setAged(9);
+        uconditions.setName("shnd尚晓飞");
+        List<User>  users=userService.queryUserByCondtions(uconditions);
+        System.out.println("查询用户信息的结果大小:"+ (CollectionUtils.isNotEmpty(users) ?users.size():0));
+    }
+
+    @Test
     public void testCache(){
         String result=userService.getUserById("123",888);
         System.out.println("执行结果==>"+result);
     }
 
-    @Test
-    public void testCglibCahe(){
-        User user=new User();
-        user.setName("测试缓存");
-        user.setAge(10);
-        user.setAddress("二级缓存");
-        String a=userManage.addUser(user);
-        System.out.println(a);
-    }
-
-    @Test
-    public void testSuserMapper(){
-        SUser sUser=userManage.getUser();
-        System.out.println("得到的名字为"+sUser.getName());
-    }
-
-    @Test
-    public void testAspect(){
-        userManage.doSpringAopTest("throw");
-    }
-
-    @Test
-    public void testAspectRound(){
-        int a=userManage.doAdd("尚晓飞",108);
-        System.out.println("返回结果为==>"+a);
-    }
+//    @Test
+//    public void testCglibCahe(){
+//        User user=new User();
+//        user.setName("测试缓存");
+//        user.setAge(10);
+//        user.setAddress("二级缓存");
+//        String a=userManage.addUser(user);
+//        System.out.println(a);
+//    }
+//
+//    @Test
+//    public void testSuserMapper(){
+//        SUser sUser=userManage.getUser();
+//        System.out.println("得到的名字为"+sUser.getName());
+//    }
+//
+//    @Test
+//    public void testAspect(){
+//        userManage.doSpringAopTest("throw");
+//    }
+//
+//    @Test
+//    public void testAspectRound(){
+//        int a=userManage.doAdd("尚晓飞",108);
+//        System.out.println("返回结果为==>"+a);
+//    }
 
     @Test
     public void testMoreAspectRound(){

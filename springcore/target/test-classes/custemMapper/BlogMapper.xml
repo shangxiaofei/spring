@@ -3,6 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.test.study.mapper.BlogMapper">
+    <resultMap id="aresult" type="Blog">
+        <result column="id" property="id" javaType="int" jdbcType="Integer"/>
+        <result column="name" property="name" javaType="String" jdbcType="varchar"/>
+    </resultMap>
+
+    <parameterMap id="param" type="Blog">
+        <parameter property="id" javaType="int" jdbcType="Interge" typeHandler="org.apache.ibatis.type.IntegerTypeHandler"/>
+    </parameterMap>
+
     <select id="getById" resultType="Blog">
         select * from t_blog where id = #{id}
     </select>

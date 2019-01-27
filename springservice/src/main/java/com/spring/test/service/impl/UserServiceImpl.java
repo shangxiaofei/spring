@@ -1,5 +1,6 @@
 package com.spring.test.service.impl;
 
+import com.spring.test.conditions.Uconditions;
 import com.spring.test.service.UserService;
 import com.spring.test.entry.User;
 import com.spring.test.mapper.UserMapper;
@@ -17,6 +18,8 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author <a href="mailto:shangxiaofei@meituan.com">尚晓飞</a>
@@ -52,5 +55,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getUserById(String id,int b) {
         return "我是真正的执行者";
+    }
+
+    @Transactional(propagation =Propagation.REQUIRED)
+    @Override
+    public User queryUserById(String userId) {
+        System.out.println("同serivce调用");
+        return userMapper.queryUserById(Integer.valueOf(userId));
+    }
+
+    @Transactional(propagation =Propagation.REQUIRED)
+    @Override
+    public User updateUser(User user) {
+        System.out.println("修改数据");
+        User user1=queryUserById("1");
+        System.out.println("查询结束");
+        return user1;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public List<User> queryUserByCondtions(Uconditions uconditions) {
+        return userMapper.queryUserByConditions(uconditions);
     }
 }

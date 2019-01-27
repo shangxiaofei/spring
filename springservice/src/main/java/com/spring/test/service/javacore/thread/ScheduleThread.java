@@ -1,8 +1,10 @@
 package com.spring.test.service.javacore.thread;
 
+import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -33,5 +35,12 @@ public class ScheduleThread {
 
             }
         },1,5, TimeUnit.SECONDS);
+    }
+
+
+    public static void test01(){
+        //线程池
+        ThreadLocal<String> threadLocal=new ThreadLocal();
+        threadLocal.set("a");
     }
 }

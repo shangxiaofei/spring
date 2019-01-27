@@ -19,4 +19,9 @@ public class Java8 {
             System.out.println(a);
         });
     }
+
+    public static void test01(){
+        List<String> list=new ArrayList<>();
+
+    }
 }

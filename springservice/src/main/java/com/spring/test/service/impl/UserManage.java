@@ -22,7 +22,7 @@ import java.util.List;
  * @author <a href="mailto:shangxiaofei@meituan.com">尚晓飞</a>
  * @date 上午9:24 2018/6/2
  */
-@Service
+
 public class UserManage {
     public static final Logger logger = LoggerFactory.getLogger(UserManage.class);
 
