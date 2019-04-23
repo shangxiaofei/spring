@@ -1,5 +1,8 @@
 package com.spring.test.service.string;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -16,6 +19,13 @@ public class ArrayListStr {
 
     public static void main(String[] args) {
         test01();
+    }
+
+    public static void test03(){
+//        String a="{\"key\":\"1,2,3,5\"}";
+//        JSONObject jsonObject=JSON.parseObject(a);
+//        jsonObject.get
+
     }
 
     public static void test01(){

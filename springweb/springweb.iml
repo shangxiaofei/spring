@@ -25,15 +25,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-api:2.10.4" level="project" />
-    <orderEntry type="library" name="Maven: com.dianping.rhino:rhino-client:1.1.4" level="project" />
-    <orderEntry type="library" name="Maven: com.meituan.service.inf:kms-java-client:0.7.0" level="project" />
-    <orderEntry type="library" name="Maven: com.sankuai.octo:mns-invoker:1.8.7" level="project" />
-    <orderEntry type="library" name="Maven: com.sankuai.octo:idl-sgagent:1.7.2" level="project" />
-    <orderEntry type="library" name="Maven: com.sankuai.octo:idl-common:1.8.1" level="project" />
-    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-ds-monitor-client:2.10.5.2" level="project" />
-    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-dao:0.3.0" level="project" />
-    <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.12" level="project" />
+    <orderEntry type="library" name="Maven: net.lingala.zip4j:zip4j:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-ds-monitor-client:2.10.6" level="project" />
+    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-dao:0.3.1" level="project" />
     <orderEntry type="module" module-name="springservice" />
     <orderEntry type="library" name="Maven: org.reflections:reflections:0.9.11" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.21.0-GA" level="project" />
@@ -158,8 +152,9 @@
     <orderEntry type="library" name="Maven: com.sankuai.octo:idl-sgagent:1.7.2" level="project" />
     <orderEntry type="library" name="Maven: com.sankuai.octo:idl-common:1.8.1" level="project" />
     <orderEntry type="module" module-name="springcore" />
-    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-ds-monitor-client:2.10.5.2" level="project" />
-    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-dao:0.3.0" level="project" />
+    <orderEntry type="library" name="Maven: net.lingala.zip4j:zip4j:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-ds-monitor-client:2.10.6" level="project" />
+    <orderEntry type="library" name="Maven: com.dianping.zebra:zebra-dao:0.3.1" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.12" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:1.3.1" level="project" />

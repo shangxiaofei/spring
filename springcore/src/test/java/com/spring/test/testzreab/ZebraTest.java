@@ -24,8 +24,12 @@ public class ZebraTest {
     public void testInsert(){
         TxOrder txOrder=new TxOrder();
         txOrder.setId(1);
-        txOrder.setName("可乐");
+        txOrder.setName("mttp_123_124");
         txOrder.setMoney(12);
         txOrderMapper.insert(txOrder);
+    }
+
+    public void testSelect(){
+//        txOrderMapper.selectByPrimaryKey();
     }
 }

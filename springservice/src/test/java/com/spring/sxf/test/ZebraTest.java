@@ -27,7 +27,7 @@ public class ZebraTest {
     public void testInsert(){
         TxOrder txOrder=new TxOrder();
         txOrder.setId(10);
-        txOrder.setName("mtpp_123_123");
+        txOrder.setName("mtpp_129_123");
         txOrder.setMoney(9999);
         txOrderMapper.insert(txOrder);
     }

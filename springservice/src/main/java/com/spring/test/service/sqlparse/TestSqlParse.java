@@ -1,7 +1,15 @@
 package com.spring.test.service.sqlparse;
 
+import com.dianping.zebra.druid.sql.ast.SQLStatement;
+import com.dianping.zebra.druid.sql.dialect.mysql.parser.MySqlLexer;
+import com.dianping.zebra.druid.sql.dialect.mysql.parser.MySqlStatementParser;
+import com.dianping.zebra.druid.sql.parser.SQLStatementParser;
+import com.dianping.zebra.shard.parser.MultiSQLParsedResult;
+import com.dianping.zebra.shard.parser.SQLHint;
 import com.dianping.zebra.shard.parser.SQLParsedResult;
 import com.dianping.zebra.shard.parser.SQLParser;
+
+import java.util.List;
 
 /**
  * @author <a href="mailto:shangxiaofei@meituan.com">尚晓飞</a>
@@ -10,7 +18,7 @@ import com.dianping.zebra.shard.parser.SQLParser;
 public class TestSqlParse {
 
     public static void main(String[] args) {
-        test02();
+        test01();
     }
 
 
@@ -31,9 +39,11 @@ public class TestSqlParse {
     }
 
     public static void test01(){
-        String sql="slect * from tb_order where id=?";
+        String sql="select * from tb_order where id in (select id from tb_account)";
         SQLParser.init();
         SQLParsedResult result=SQLParser.parseWithCache(sql);
         System.out.println(result);
+        System.out.println(result.getRouterContext().getTableSet());
     }
+
 }

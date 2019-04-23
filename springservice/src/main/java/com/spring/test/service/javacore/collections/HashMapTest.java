@@ -13,7 +13,7 @@ public class HashMapTest {
 
 
     public static void main(String[] args) {
-        test03();
+        test04();
     }
 
     public static void test01(){
@@ -51,5 +51,17 @@ public class HashMapTest {
           String key= a.getKey();
           myHashMap.remove(key);
         }
+    }
+
+
+    public static void test04(){
+        HashMap<String, Integer> myHashMap = new HashMap<>();
+        myHashMap.put("1", 1);
+        myHashMap.put("2", 2);
+        myHashMap.entrySet().stream().filter(entry->{
+            return  (1==entry.getValue());
+        }).forEach(entry -> {
+            System.out.println("结果=>"+entry.getValue());
+        });
     }
 }

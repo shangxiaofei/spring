@@ -1,6 +1,7 @@
 com/spring/test/entry/generator/SUserExample$Criterion.class
 com/spring/test/mapper/generator/SUserMapper.class
 com/spring/test/mapper/generator/TxOrderMapper.class
+com/spring/test/conditions/Uconditions.class
 com/spring/test/entry/generator/SUserExample$GeneratedCriteria.class
 com/spring/test/entry/generator/TxOrderExample$Criteria.class
 com/spring/test/entry/generator/TxOrderExample$Criterion.class

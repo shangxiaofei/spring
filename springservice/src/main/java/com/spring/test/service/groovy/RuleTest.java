@@ -20,6 +20,8 @@ public class RuleTest {
         test03();
         System.out.println("索引如下");
         test01();
+//        test08();
+//        test09();
     }
 
     /**
@@ -29,7 +31,34 @@ public class RuleTest {
         RuleEngine dbRule = new GroovyRuleEngine("crc32(#Uid#).intdiv(1)%4");
         RuleEngine tbRule = new GroovyRuleEngine("crc32(#Uid#).intdiv(10)%256");
         Map<String, Object> valMap = new HashMap<String, Object>();
-        valMap.put("Uid", "2019012470000108330186660201508");
+        valMap.put("Uid", "21903271572200795");
+        System.out.println("dbIndex = "+dbRule.eval(valMap));
+        System.out.println("tbIndex = "+tbRule.eval(valMap));
+    }
+
+
+    /**
+     * 算流水outNo-mttpp_9997771_8977743
+     */
+    public static void test03(){
+        RuleEngine dbRule = new GroovyRuleEngine("#out_no#.substring(#out_no#.indexOf('_') + 1, #out_no#.lastIndexOf('_')).toLong()%4");
+        RuleEngine tbRule = new GroovyRuleEngine("#out_no#.substring(#out_no#.indexOf('_') + 1, #out_no#.lastIndexOf('_')).toLong().intdiv(10)%256");
+        Map<String, Object> valMap = new HashMap<String, Object>();
+        valMap.put("out_no", "mtpp_457624423_10913038263");
+        System.out.println("dbIndex = "+dbRule.eval(valMap));
+        System.out.println("tbIndex = "+tbRule.eval(valMap));
+    }
+
+
+
+    /**
+     * 算索引
+     */
+    public static void test08(){
+        RuleEngine dbRule = new GroovyRuleEngine("crc32(#Uid#).intdiv(1)%2");
+        RuleEngine tbRule = new GroovyRuleEngine("crc32(#Uid#).intdiv(1)%4");
+        Map<String, Object> valMap = new HashMap<String, Object>();
+        valMap.put("Uid", "outNo-mttpp_9997777_8977743");
         System.out.println("dbIndex = "+dbRule.eval(valMap));
         System.out.println("tbIndex = "+tbRule.eval(valMap));
     }
@@ -38,14 +67,16 @@ public class RuleTest {
     /**
      * 算流水
      */
-    public static void test03(){
-        RuleEngine dbRule = new GroovyRuleEngine("#out_no#.substring(#out_no#.indexOf('_') + 1, #out_no#.lastIndexOf('_')).toLong()%4");
-        RuleEngine tbRule = new GroovyRuleEngine("#out_no#.substring(#out_no#.indexOf('_') + 1, #out_no#.lastIndexOf('_')).toLong().intdiv(10)%256");
+    public static void test09(){
+        RuleEngine dbRule = new GroovyRuleEngine("#out_no#.substring(#out_no#.indexOf('_') + 1, #out_no#.lastIndexOf('_')).toLong()%2");
+        RuleEngine tbRule = new GroovyRuleEngine("#out_no#.substring(#out_no#.indexOf('_') + 1, #out_no#.lastIndexOf('_')).toLong()%4");
         Map<String, Object> valMap = new HashMap<String, Object>();
-        valMap.put("out_no", "mtpp_379317599_10831507047");
+        valMap.put("out_no", "mtpp_9997673_8977743");
         System.out.println("dbIndex = "+dbRule.eval(valMap));
         System.out.println("tbIndex = "+tbRule.eval(valMap));
     }
+
+
 
 
     public static void test02(){
@@ -64,14 +95,4 @@ public class RuleTest {
         System.out.println("dbIndex = "+dbRule.eval(valMap));
     }
 
-
-    public static  void test05(){
-        //2个库8张表
-        RuleEngine dbRule = new GroovyRuleEngine("#Uid#.substring(#Uid#.indexOf(\"_\") + 1, #Uid#.lastIndexOf(\"_\")).toLong().intdiv(10)%4");
-        // RuleEngine tbRule = new GroovyRuleEngine("##");
-        Map<String, Object> valMap = new HashMap<String, Object>();
-        valMap.put("Uid", "mtpp_315257220_10757485311");
-        System.out.println("dbIndex = "+dbRule.eval(valMap));
-        // System.out.println("tbIndex = "+tbRule.eval(valMap));
-    }
 }

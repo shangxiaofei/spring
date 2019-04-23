@@ -1,10 +1,10 @@
 package com.spring.test.service.sqlparse;
 
-import com.alibaba.druid.sql.SQLUtils;
+
 import com.alibaba.druid.sql.ast.SQLStatement;
-import com.alibaba.druid.util.JdbcConstants;
-import com.dianping.zebra.shard.parser.SQLParsedResult;
-import com.dianping.zebra.shard.parser.SQLParser;
+import com.alibaba.druid.sql.dialect.mysql.parser.MySqlStatementParser;
+import com.alibaba.druid.sql.dialect.mysql.visitor.MySqlOutputVisitor;
+import com.alibaba.druid.sql.dialect.mysql.visitor.MySqlSchemaStatVisitor;
 
 import java.util.List;
 
@@ -15,8 +15,21 @@ import java.util.List;
 public class DruidSqlParse {
 
     public static void main(String[] args) {
-        String sql="select * from tb where id=?";
-        SQLParsedResult parsedResult = SQLParser.parseWithCache(sql);
-        System.out.println("========");
+        test01();
+    }
+
+
+    public static void test01() {
+        StringBuilder stringBuilder = new StringBuilder();
+        MySqlSchemaStatVisitor mySqlOutputVisitor = new MySqlSchemaStatVisitor();
+       // String sql = "select name,age,address from  t_user where id=123";
+        String sql="select id,count(*) from t_user group by id having id>3 order by id desc limit 0,10";
+        MySqlStatementParser mySqlStatementParser = new MySqlStatementParser(sql);
+        List<SQLStatement> sqlStatements = mySqlStatementParser.parseStatementList();
+        for (SQLStatement sqlStatement : sqlStatements) {
+            sqlStatement.accept(mySqlOutputVisitor);
+            System.out.println(mySqlOutputVisitor.getTables());
+
+        }
     }
 }

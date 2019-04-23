@@ -1,5 +1,6 @@
 package com.spring.test.service.javacore.lock;
 
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -15,10 +16,12 @@ public class TestReadAndWriteLock {
 
 
 
-    public static void testLock(){
+    public static void testLock() throws InterruptedException {
         ReentrantLock reentrantLock=new ReentrantLock();
         reentrantLock.lock();
         reentrantLock.unlock();
+        Condition condition=reentrantLock.newCondition();
+        condition.await();
 
     }
 
